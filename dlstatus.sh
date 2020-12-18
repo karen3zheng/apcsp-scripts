@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# list of droplets, dl11 does not exist and should be dead
 DROPLETS="dl01 dl02 dl03 dl04 dl05 dl06 dl07 dl08 dl09 dl10 dl11"
+# list of droplets to check
 CHECK=$DROPLETS
 
 # if there are one or more args, only check the droplets specified

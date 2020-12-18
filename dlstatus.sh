@@ -1,26 +1,21 @@
 #!/bin/bash
 
+DROPLETS="dl01 dl02 dl03 dl04 dl05 dl06 dl07 dl08 dl09 dl10 dl11"
+CHECK=$DROPLETS
+
 # if there are one or more args, only check the droplets specified
 if [ $# -gt 0 ] ; then
-	for i in $* ; do
-		ping -c 1 $i &> /dev/null
-		if [ $? -eq 0 ] ; then
-			echo $i ": alive"
-		else 
-			echo $i ": dead"
-		fi
-	done
-# if there are no args, check all droplets
-else 
-	for i in dl01 dl02 dl03 dl04 dl05 dl06 dl07 dl08 dl09 dl10 dl11 ; do
-		ping -c 1 $i &> /dev/null
-		if [ $? -eq 0 ] ; then
-			echo $i ": alive"
-		else
-			echo $i ": dead"
-		fi
-	done
+	CHECK="$*"
 fi
 
-exit 0
+# check if each droplet is alive
+for i in $CHECK ; do
+	ping -c 1 $i &> /dev/null # pings each droplet once and redirects output so it doesn't show
+	if [ $? -eq 0 ] ; then # if the ping was successful, it is alive
+		echo $i ": alive"
+	else # if the ping was not successful, it is dead
+		echo $i ": dead"
+	fi
+done
 
+exit 0

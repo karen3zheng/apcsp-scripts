@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# if there are one or more args, only check the droplets specified
 if [ $# -gt 0 ] ; then
 	for i in $* ; do
 		ping -c 1 $i &> /dev/null
@@ -9,6 +10,7 @@ if [ $# -gt 0 ] ; then
 			echo $i ": dead"
 		fi
 	done
+# if there are no args, check all droplets
 else 
 	for i in dl01 dl02 dl03 dl04 dl05 dl06 dl07 dl08 dl09 dl10 dl11 ; do
 		ping -c 1 $i &> /dev/null

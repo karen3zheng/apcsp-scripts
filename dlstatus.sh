@@ -12,7 +12,7 @@ fi
 
 # check if each droplet is alive
 for i in $CHECK ; do
-	ping -c 1 $i &> /dev/null # pings each droplet once and redirects output so it doesn't show
+	timeout 0.2 ping -c 1 $i &> /dev/null # pings each droplet once and redirects output so it doesn't show
 	if [ $? -eq 0 ] ; then # if the ping was successful, it is alive
 		echo $i ": alive"
 	else # if the ping was not successful, it is dead
